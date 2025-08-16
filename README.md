@@ -1,38 +1,30 @@
-📈 Trading Strategy Backtesting & Simulation:
- General Idea of the Project
-Implements and tests algorithmic trading strategies using Python
+# Option Pricing Monte Carlo Simulator
 
-Uses technical indicators such as:
-Average Directional Index (ADX)
-Stochastic Oscillator
-Moving Averages (MA)
-Bollinger Bands (BB)
-Commodity Channel Index (CCI)
+## Project Overview
+This project implements a Monte Carlo simulator for pricing European options. It uses stochastic modeling to simulate possible paths of the underlying asset's price and estimates the option price based on these simulated outcomes.
 
-Includes a refinement algorithm to improve entry/exit signals with volatility filters
+## Key Features
+- Simulates multiple paths of asset prices using random sampling.
+- Computes the expected payoff of options and discounts it to present value.
+- Flexible parameters including spot price, strike price, volatility, risk-free rate, and time to maturity.
+- Supports both call and put options.
 
-Provides a backtesting framework to measure:
-Portfolio returns
-Sharpe Ratio (risk-adjusted return)
-Maximum drawdown (largest loss from a peak)
-Features a paper-trading simulation to mimic real-time trading without risk
+## Mathematical Concepts Used
+- Stochastic processes to model random behavior of asset prices.
+- Monte Carlo simulation for numerical approximation of option prices.
+- Risk-neutral valuation to compute expected discounted payoffs.
+- Statistical averaging and variance reduction techniques to improve accuracy.
 
-Adds a leaderboard system to rank strategies by simulated profitability
+## Usage
+1. Install required libraries (NumPy, Pandas, Matplotlib).
+2. Set your parameters for the option (S0, K, T, r, sigma, num_simulations).
+3. Run the simulation to get the estimated option price.
 
-⚙️ Requirements
+## Example
+```python
+# Example usage
+from monte_carlo_simulator import OptionPricingSimulator
 
-Programming Language: Python 3.8 or higher
-
-Software: Jupyter Notebook
-
-Python Libraries:
-
-pandas (data analysis)
-
-numpy (numerical computing)
-
-matplotlib (visualization)
-
-scipy (scientific computing)
-
-yfinance (to fetch market data from Yahoo Finance)
+simulator = OptionPricingSimulator(S0=100, K=105, T=1, r=0.05, sigma=0.2, num_simulations=100000)
+call_price = simulator.simulate_call()
+print(f"Estimated Call Option Price: {call_price}")
